@@ -1,0 +1,1170 @@
+function confirm_box_layout(c) {
+    var a = [];
+    a.push("<div id=\"box_confirm\">\n    <div style=\"text-align:center; height:80px;border:1px solid #ddd;\">\n        <table style=\"height:100%;width:100%\">\n            <tr>\n                <td>\n                    <img align=\"absmiddle\" src=\"/images/icons/warning_32.png\">\n                    <span>");
+    a.push(c);
+    a.push("</span>\n                </td>\n            </tr>\n        </table>\n    </div>\n</div>\n<div id=\"box_buttons\">\n    <ul>\n        <li><a title=\"取消\" href=\"javascript:void(0);\" id=\"button_cancel\" class=\"box_button_gray\"><span>取消</span></a></li>\n        <li><a title=\"确定\" href=\"javascript:void(0);\" id=\"button_confirm\" class=\"box_button_blue\"><span>确定</span></a></li>\n    </ul>\n</div>");
+    return a.join("")
+}
+function box_layout(c, a, b) {
+    var d = [];
+    b = undefined === b ? true : b;
+    d.push("<div id=\"");
+    d.push(c);
+    d.push("\" class=\"box\" >\n    <div id=\"");
+    d.push(c);
+    d.push("_topbar\" class=\"box_header\">\n        <h3 id=\"");
+    d.push(c);
+    d.push("_title\" class=\"box_title\">");
+    d.push(a);
+    d.push("</h3>\n        <a id=\"");
+    d.push(c);
+    d.push("_close\" href=\"javascript:void(0);\" title=\"关闭\" class=\"box_close\"></a>\n");
+    if (b) {
+        d.push("            <a id=\"");
+        d.push(c);
+        d.push("_mini\" href=\"javascript:void(0);\" title=\"最小化\" class=\"box_mini\"></a>\n")
+    }
+    d.push("    </div>\n    <div id=\"");
+    d.push(c);
+    d.push("_content\" align=\"center\" class=\"box_content\"></div>\n</div>");
+    return d.join("")
+}
+function login_box_layout(c) {
+    var a = [];
+    var b = window.location,
+        d = {
+            scheme: b.protocol.replace(':', ''),
+            host: b.host,
+            forward: encodeURIComponent(b.href)
+        };
+    document.cookie = '_everbox_forward=' + d.forward + ';path=/';
+    a.push("<div id=\"box_login\" style=\"padding:5px 0;\">\n    <div class=\"box_form\">\n");
+    a.push("        ");
+    if (undefined !== c) {
+        a.push("<div class=\"msgtip\"><p>");
+        a.push(c);
+        a.push("</p></div>")
+    }
+    a.push("\n");
+    a.push("        <iframe id=\"login_frame\" width=\"350\" height=\"132\" border=\"0\" scrolling=\"no\" frameborder=\"0\" src=\"http://login.sdo.com/sdo/Login/LoginFrame.php?appId=200026300&amp;appArea=0&amp;autologintime=14&amp;autologinchecked=1&amp;appDomain=");
+    a.push(d.host);
+    a.push("&amp;returnURL=");
+    a.push(d.scheme);
+    a.push("%3A%2F%2F");
+    a.push(d.host);
+    a.push("%2Flogin_sdo&amp;CSSURL=");
+    a.push(d.scheme);
+    a.push("%3A%2F%2F");
+    a.push(d.host);
+    a.push("%2Fcss%2Flogin_frame.css&amp;curURL=");
+    a.push(d.forward);
+    a.push("\" allowTransparency=\"true\"></iframe>\n    </div>\n</div>\n<div style=\"padding:10px 0;background:url(/images/login_line.gif) no-repeat center 0;\">\n    <p style=\"text-align:center;\">\n        <img src=\"/images/icon_everbox.gif\" align=\"absmiddle\" />\n        <a href=\"/login?native=1&return_to=");
+    a.push(d.forward);
+    a.push("\" class=\"highlight\">用EverBox帐号登录</a>&nbsp;&nbsp;\n        <img src=\"/images/icon_google.gif\" align=\"absmiddle\" />\n        <a href=\"/google?return_to=");
+    a.push(d.forward);
+    a.push("\" class=\"highlight\">用Google帐号登录</a>\n    </p>\n</div>");
+    return a.join("")
+}
+function report_box_layout(c) {
+    var a = [];
+    a.push("<div id=\"box_report\">\n    <h3>如果此文件包含色情、暴力、侵权和广告等内容，请告知：</h3>\n    <div class=\"box_report\">\n");
+    if (undefined !== c.title) {
+        a.push("        <p>举报文件: <b>");
+        a.push(c.title);
+        a.push("</b></p>\n")
+    }
+    a.push("        <p><label for=\"reason_content\">举报原因:</label></p>\n        <textarea id=\"reason_content\" name=\"reason_content\" cols=\"38\" rows=\"5\" style=\"width:336px;height:100px;\"></textarea>\n        <p align=\"right\" style=\"margin-top:5px;\">\n            <input type=\"checkbox\" name=\"is_author\" id=\"is_author\" value=\"1\" />\n            <label for=\"is_author\">我是文件版权人</label>\n        </p>\n    </div>\n</div>\n<div id=\"box_buttons\">\n    <span id=\"box_message_error\"></span>\n    <ul>\n        <li><a title=\"取消\" href=\"javascript:void(0);\" id=\"button_cancel\" class=\"box_button_gray\"><span>取消</span></a></li>\n        <li><a title=\"确定\" href=\"javascript:void(0);\" id=\"button_confirm\" class=\"box_button_blue\"><span>确定</span></a></li>\n    </ul>\n</div>");
+    return a.join("")
+}
+function warning_box_layout(c) {
+    var a = [];
+    a.push("<div id=\"box_warning\">\n    <div style=\"text-align:center; height:80px;border:1px solid #ddd;\">\n        <table style=\"height:100%;width:100%\">\n            <tr>\n                <td>\n                    <img align=\"absmiddle\" src=\"/images/icons/warning_32.png\">\n                    <span>");
+    a.push(c);
+    a.push("</span>\n                </td>\n            </tr>\n        </table>\n    </div>\n</div>\n<div id=\"box_buttons\">\n    <ul>\n        <li><a title=\"确定\" href=\"javascript:everbox.modalBox.close();\" id=\"button_confirm\" class=\"box_button_blue\"><span>确定</span></a></li>\n    </ul>\n</div>");
+    return a.join("")
+}
+function BoxManager() {
+    this.boxes = [];
+    this.zIndexThreshold = 1024
+}
+BoxManager.prototype.getHighestZIndex = function () {
+    return this.boxes.length + this.zIndexThreshold - 1
+};
+BoxManager.prototype.getIndex = function (c) {
+    for (var a = 0, b = this.boxes.length; a < b; a++) {
+        if (c == this.boxes[a].id) {
+            return a
+        }
+    }
+    return -1
+};
+BoxManager.prototype.add = function (c) {
+    var a = {
+        id: c,
+        zIndex: this.zIndexThreshold + this.boxes.length
+    };
+    this.boxes[this.boxes.length] = a
+};
+BoxManager.prototype.remove = function (c) {
+    var a = this.getIndex(c);
+    if (a < 0) {
+        alert("box: " + c + " is not found!");
+        return
+    }
+    this.boxes.splice(a, 1);
+    for (var b = 0, d = this.boxes.length; b < d; b++) {
+        this.boxes[b].zIndex = b + this.zIndexThreshold
+    }
+};
+BoxManager.prototype.topmost = function (b) {
+    var d = this.getIndex(b);
+    if (d < 0) {
+        alert("box: " + b + " is not found!");
+        return
+    }
+    var e = 0,
+        f = this.boxes.length;
+    for (e = d + 1; e < f; e++) {
+        this.boxes[e].zIndex--
+    }
+    this.boxes[d].zIndex = this.zIndexThreshold + this.boxes.length - 1;
+    this.boxes.sort(function (c, a) {
+        return a.zIndex < c.zIndex ? 1 : -1
+    });
+    for (e = 0; e < f; e++) {
+        $("#" + this.boxes[e].id).css("z-index", this.boxes[e].zIndex)
+    }
+};
+
+function Box(c) {
+    if (c === undefined || c.id === undefined) {
+        alert("Box setup error!");
+        return
+    }
+    this.settings = c;
+    this.initSettings();
+    this.init_()
+}
+Box.prototype.show = function () {
+    this.init_();
+    this.setPosition(this.settings.top, this.settings.left);
+    if (!this.settings.modal) {
+        everbox.boxManager.topmost(this.settings.id)
+    } else {
+        this.showOverlay_();
+        var c = $("#modalBoxOverlay").css("z-index");
+        $("#" + this.settings.id).css("z-index", c + 1);
+        $("#" + this.settings.id + "_mini").hide()
+    }
+};
+Box.prototype.hide = function () {
+    var c = this,
+        a = $("#" + c.settings.id);
+    a.css({
+        top: "-99999px"
+    });
+    if (c.settings.modal || !c.settings.mini) {
+        c.hideOverlay_();
+        return
+    }
+    if (!c.settings.modal && c.settings.mini_to_id !== undefined) {
+        $("#mini_box").show();
+        $("#mini_box").css({
+            top: c.settings.top + "px",
+            left: c.settings.left + "px"
+        });
+        $("#mini_box").width(a.width());
+        $("#mini_box").height(a.height());
+        var b = $("#" + c.settings.mini_to_id);
+        var d = b.height();
+        var e = b.width();
+        $("#mini_box").animate({
+            opacity: 0.85,
+            left: b.offset().left,
+            top: b.offset().top,
+            height: d,
+            width: e
+        }, 400, function () {
+            $("#mini_box").hide()
+        })
+    }
+};
+Box.prototype.close = function () {
+    var c = this;
+    c.hide();
+    var a = c.settings.box_close,
+        b = c.settings.box_close_params;
+    if (undefined !== a) {
+        if (undefined !== b) {
+            a.call(b)
+        } else {
+            c.getPosition();
+            c.settings.box_close();
+            c.destory()
+        }
+    }
+};
+Box.prototype.destory = function () {
+    everbox.boxManager.remove(this.settings.id);
+    $("#" + this.settings.id).hide().remove();
+    this.settings = {}
+};
+Box.prototype.ensureDefault = function (c, a) {
+    this.settings[c] = (this.settings[c] === undefined) ? a : this.settings[c]
+};
+Box.prototype.initSettings = function () {
+    this.ensureDefault("title", "Your box title");
+    this.ensureDefault("modal", false);
+    this.ensureDefault("dragable", true);
+    this.ensureDefault("width", 300);
+    this.ensureDefault("height", 400);
+    this.ensureDefault("autoSize", true);
+    this.ensureDefault("padding", true);
+    this.ensureDefault("mini", true);
+    var c = $(window),
+        a = c.height(),
+        b = c.width(),
+        d = left = 0;
+    if (a > this.settings["height"]) {
+        d = (c.height() - this.settings["height"]) / 2
+    }
+    if (b > this.settings["width"]) {
+        left = (c.width() - this.settings["width"]) / 2
+    }
+    this.ensureDefault("top", d);
+    this.ensureDefault("left", left)
+};
+Box.prototype.addClass = function (c) {
+    $("#" + this.settings.id).addClass(c)
+};
+Box.prototype.enableMinimise = function () {
+    if ($("#mini_box").length === 0) {
+        $("body").append("<div id=\"mini_box\" style=\"display:none; position:absolute; border:1px dotted; width:0px; height:0px;\"> </div>")
+    }
+    var c = this;
+    $("#" + this.settings.id + "_mini").click(function () {
+        c.hide()
+    })
+};
+Box.prototype.enableDrag = function () {
+    var b = this,
+        d = $("#" + b.settings.id);
+    var e = {};
+    e.height = 0;
+    e.width = 0;
+    e.isMouseDown = false;
+    $("#" + b.settings.id + "_topbar").css("cursor", "move");
+    $("#" + b.settings.id + "_topbar").mousedown(function (c) {
+        e.isMouseDown = true;
+        if (!b.settings.modal) {
+            everbox.boxManager.topmost(b.settings.id)
+        }
+        var a = d.offset();
+        e.height = c.pageX - a.left;
+        e.width = c.pageY - a.top;
+        return false
+    });
+    $('body').mousemove(function (c) {
+        if (e.isMouseDown === true) {
+            d.css({
+                'left': c.pageX - e.height,
+                'top': c.pageY - e.width
+            });
+            var a = d.offset();
+            b.settings.top = a.top;
+            b.settings.left = a.left
+        }
+    }).mouseup(function (c) {
+        e.isMouseDown = false
+    })
+};
+Box.prototype.setTitle = function (c) {
+    this.settings.title = c;
+    $("#" + this.settings.id + "_title").html(c)
+};
+Box.prototype.setContent = function (c) {
+    $("#" + this.settings.id + "_content").html(c)
+};
+Box.prototype.clear = function (c) {
+    $("#" + this.settings.id + "_content").empty()
+};
+Box.prototype.setPosition = function (c, a) {
+    this.settings.top = c;
+    this.settings.left = a;
+    $("#" + this.settings.id).css({
+        top: c + "px",
+        left: a + "px"
+    })
+};
+Box.prototype.getPosition = function () {
+    return {
+        "top": this.settings.top,
+        "left": this.settings.left
+    }
+};
+Box.prototype.setSize = function (c, a) {
+    this.settings.width = c;
+    this.settings.height = a;
+    var b = $("#" + this.settings.id);
+    b.css({
+        width: c + "px",
+        height: a + "px"
+    });
+    if (!this.settings.padding) {
+        $("#" + this.settings.id + "_content").css("padding", 0)
+    }
+    var d = b.height() - $("#" + this.settings.id + "_topbar").height();
+    $("#" + this.settings.id + "_content").css("height", d)
+};
+Box.prototype.setContentSize = function (c, a) {
+    var b = $("#" + this.settings.id + "_topbar").height() + a;
+    var d = c;
+    if (this.settings.padding) {
+        b += 2 * 10;
+        d += 2 * 10
+    } else {
+        $("#" + this.settings.id + "_content").css("padding", 0)
+    }
+    this.settings.width = d;
+    this.settings.height = b;
+    $("#" + this.settings.id).css({
+        width: d + "px",
+        height: b + "px"
+    });
+    $("#" + this.settings.id + "_content").css({
+        "width": c + "px",
+        "height": a + "px"
+    })
+};
+Box.prototype.init_ = function () {
+    var c = $("#" + this.settings.id);
+    if (c.length > 0) {
+        return
+    }
+    var a = this;
+    var b = a.settings.modal;
+    if (!b) {
+        everbox.boxManager.add(this.settings.id)
+    }
+    var d = box_layout(this.settings.id, this.settings.title, this.settings.mini);
+    $("body").append(d);
+    if (a.settings.autoSize) {
+        this.setContentSize(this.settings.width, this.settings.height)
+    } else {
+        this.setSize(this.settings.width, this.settings.height)
+    }
+    if (!b && this.settings.mini) {
+        this.enableMinimise()
+    }
+    if (a.settings.dragable) {
+        this.enableDrag()
+    }
+    if (!b) {
+        $("#" + this.settings.id).click(function () {
+            everbox.boxManager.topmost(a.settings.id)
+        })
+    } else {
+        $("#" + a.settings.id + "_close").removeClass("box_close").addClass("box_close_single");
+        $(this).removeClass("mp3Player-volume-min").addClass("mp3Player-volume-max")
+    }
+    $("#" + a.settings.id + "_close").click(function () {
+        a.close()
+    })
+};
+Box.prototype.hideOverlay_ = function () {
+    if ($("#modalBoxOverlay").length > 0) {
+        $("#modalBoxOverlay").hide()
+    }
+};
+Box.prototype.showOverlay_ = function () {
+    if (!this.settings.modal) {
+        return
+    }
+    if ($("#modalBoxOverlay").length === 0) {
+        $("body").append("<div id=\"modalBoxOverlay\" class=\"box_modal_overlay\"> </div>")
+    }
+    $("#modalBoxOverlay").css({
+        "opacity": 0.4,
+        "z-index": 999
+    }).show()
+};
+$(function () {
+    everbox.boxManager = new BoxManager();
+    everbox.modalBox = new Box({
+        "id": "modalBox",
+        "title": "Everbox",
+        "top": 10,
+        "left": 300,
+        "modal": true
+    });
+    everbox.modalBox.warning = function (c, a) {
+        var b = warning_box_layout(c),
+            d = 320,
+            e = 115,
+            f = centralize(d, e);
+        this.clear();
+        this.setTitle("警告！");
+        this.setContent(b);
+        this.setContentSize(d, e);
+        this.setPosition(f.top, f.left);
+        this.show();
+        if (a) {
+            $("#button_confirm").unbind('click').bind('click', function () {
+                a()
+            })
+        }
+    };
+    everbox.modalBox.confirm = function (c, a, b) {
+        var d = confirm_box_layout(c),
+            e = 320,
+            f = 115,
+            h = centralize(e, f);
+        this.clear();
+        this.setTitle("确认操作？");
+        this.setContent(d);
+        this.setContentSize(e, f);
+        this.setPosition(h.top, h.left);
+        this.show();
+        $("#button_confirm").unbind('click').bind('click', function () {
+            if (a) {
+                a()
+            }
+        });
+        $("#button_cancel").unbind('click').bind('click', function () {
+            everbox.modalBox.close();
+            if (b) {
+                b()
+            }
+        })
+    };
+    everbox.modalBox.report = function (e) {
+        var f = {};
+        f.url = e.url || window.location.href;
+        if (everbox.getCookie("reported") == f.url) {
+            everbox.notice({
+                "msg": "您已经举报过该资源了！",
+                "autoHide": true,
+                "msgType": "notice"
+            });
+            return false
+        }
+        var h = report_box_layout(e),
+            g = 350,
+            j = 246,
+            k = centralize(g, j);
+        this.clear();
+        this.setTitle("举报资源");
+        this.setContent(h);
+        this.setContentSize(g, j);
+        this.setPosition(k.top, k.left);
+        this.show();
+        $("#reason_content").focus();
+        $("#button_confirm").unbind('click').bind('click', function () {
+            var b = $.trim($("#reason_content").val()),
+                d = $("#is_author").attr("checked") ? 1 : 0;
+            if (d === 0 && b === "") {
+                $("#box_message_error").text("请输入举报原因！").show();
+                $("#reason_content").focus()
+            } else {
+                f[everbox.csrfKey] = everbox.csrfVal;
+                f.type = 0;
+                f.reason = b;
+                f.is_author = d;
+                $("#box_message_error").empty().hide();
+                $.ajax({
+                    type: "POST",
+                    url: "/api/biz/report",
+                    data: f,
+                    dataType: "json",
+                    success: function (c) {
+                        var a = c.code;
+                        if (c.code == 200) {
+                            everbox.setCookie("reported", f.url);
+                            everbox.notice({
+                                "msg": "举报成功，我们将尽快做出处理，谢谢！",
+                                "autoHide": true,
+                                "msgType": "success"
+                            })
+                        } else {
+                            everbox.notice({
+                                "msg": "举报失败，请您稍候再试！",
+                                "autoHide": true,
+                                "msgType": "error"
+                            })
+                        }
+                    },
+                    complete: function () {
+                        everbox.modalBox.close()
+                    }
+                })
+            }
+        });
+        $("#button_cancel").unbind('click').bind('click', function () {
+            everbox.modalBox.close()
+        })
+    };
+    everbox.modalBox.login = function (f) {
+        var h = login_box_layout(f),
+            g = 350,
+            j = (undefined === f) ? 184 : 206,
+            k = centralize(g, j);
+        this.clear();
+        this.addClass("box_login");
+        this.setTitle("用户登录");
+        this.setContent(h);
+        this.setContentSize(g, j);
+        this.setPosition(k.top, k.left);
+        this.show();
+        $("#login").focus();
+        var m = $("#loginBoxForm");
+        m.submit(function () {
+            var b = $("#login");
+            if (!b.val()) {
+                b.focus();
+                everbox.notice({
+                    "msg": "请输入你的用户名",
+                    "autoHide": true,
+                    "msgType": "notice"
+                });
+                return false
+            }
+            var d = $("#pwd");
+            if (!d.val()) {
+                d.focus();
+                everbox.notice({
+                    "msg": "请输入你的密码",
+                    "autoHide": true,
+                    "msgType": "notice"
+                });
+                return false
+            }
+            var e = $(this);
+            $.ajax({
+                type: "POST",
+                url: e.attr("action"),
+                data: e.serializeArray(),
+                dataType: "json",
+                beforeSend: function () {
+                    everbox.notice({
+                        "msg": "正在登录, 请稍候...",
+                        "autoHide": false,
+                        "msgType": "notice"
+                    })
+                },
+                success: function (c) {
+                    var a = c.code;
+                    if (a == 200) {
+                        everbox.notice({
+                            "msg": "登录成功!",
+                            "autoHide": true,
+                            "msgType": "success"
+                        });
+                        window.location.href = window.location.href
+                    } else if (a == 403) {
+                        everbox.notice({
+                            "msg": "用户名或密码错误!",
+                            "autoHide": true,
+                            "msgType": "error"
+                        })
+                    } else if (a == 405) {
+                        everbox.notice({
+                            "msg": "请求方法错误!",
+                            "autoHide": true,
+                            "msgType": "error"
+                        })
+                    } else if (a == 406) {
+                        everbox.notice({
+                            "msg": "用户名或密码不能为空!",
+                            "autoHide": true,
+                            "msgType": "error"
+                        })
+                    } else if (a == 4010) {
+                        everbox.notice({
+                            "msg": "帐号尚未激活，正在跳转到激活页面!",
+                            "autoHide": true,
+                            "msgType": "warning",
+                            "afterHide": function () {
+                                window.location.href = c.data.activate_url
+                            }
+                        })
+                    } else if (a == 4040) {
+                        everbox.notice({
+                            "msg": "帐号尚未完成注册，正在跳转到注册页面!",
+                            "autoHide": true,
+                            "msgType": "warning",
+                            "afterHide": function () {
+                                window.location.href = c.data.signup_url
+                            }
+                        })
+                    } else {
+                        everbox.notice({
+                            "msg": "未知的错误，请刷新页面后重试!",
+                            "autoHide": true,
+                            "msgType": "warning",
+                            "afterHide": function () {
+                                window.location.href = window.location.href
+                            }
+                        })
+                    }
+                },
+                error: function () {
+                    everbox.notice({
+                        "msg": "网络错误，请稍候重试!",
+                        "autoHide": true,
+                        "msgType": "error"
+                    })
+                }
+            });
+            return false
+        })
+    }
+});
+
+function folderTree_layout(c, a) {
+    var b = [];
+    b.push("<div id=\"");
+    b.push(c);
+    b.push("\" style=\"padding:5px;\">\r\n  <ul class=\"folderTree\">\r\n    <li class=\"directory expanded\">\r\n      <p><a data-path=\"/home\" class=\"selected\">我的网盘</a></p>        \r\n");
+    var d = a.length;
+    if (d > 0) {
+        b.push("      <ul class=\"folderTree\">\r\n");
+        for (i = 0; i < d; ++i) {
+            var e = a[i];
+            var f = (e.type == 2) ? "directory collapsed" : "";
+            b.push("        <li class=\"");
+            b.push(f);
+            b.push("\">\r\n          <p><a data-path=\"");
+            b.push(e.path);
+            b.push("\">");
+            b.push(stripspecialchars(mb_strshorten(basename(e.path))));
+            b.push("</a></p>\r\n        </li>\r\n")
+        }
+        b.push("      </ul>\r\n")
+    }
+    b.push("    </li>\r\n  </ul>\r\n</div>");
+    return b.join("")
+}
+function folderTreeDlg_layout(c, a) {
+    var b = [];
+    b.push("<div id=\"");
+    b.push(c);
+    b.push("\" style=\"position:absolute;padding:5px;\">\r\n  <ul class=\"folderTree\">\r\n    <li class=\"directory expanded\">\r\n      <p><a data-path=\"/home\" class=\"selected\">我的网盘</a></p>        \r\n");
+    var d = a.length;
+    if (d > 0) {
+        b.push("      <ul class=\"folderTree\">\r\n");
+        for (i = 0; i < d; ++i) {
+            var e = a[i];
+            var f = (e.type == 2) ? "directory collapsed" : "";
+            b.push("        <li class=\"");
+            b.push(f);
+            b.push("\">\r\n          <p><a data-path=\"");
+            b.push(e.path);
+            b.push("\">");
+            b.push(stripspecialchars(mb_strshorten(basename(e.path))));
+            b.push("</a></p>\r\n        </li>\r\n")
+        }
+        b.push("      </ul>\r\n")
+    }
+    b.push("    </li>\r\n  </ul>\r\n</div>");
+    return b.join("")
+}
+function FileTreeViewer(f, h) {
+    h = h || {};
+    h.showType = h.showType || 2;
+    this.id = f;
+    this.options = h;
+    var g = this;
+    everbox.fs.changed.bind(function (c, a, b) {
+        var d = $('#' + f);
+        if (d.find('.folderTree').length) {
+            var e = g.getEntries(a, false);
+            g.showSubFolders(e)
+        }
+    })
+}
+FileTreeViewer.prototype.getEntries = function (c, a) {
+    c = c || '/home';
+    var b = [];
+    var d = everbox.fs.get(c, a);
+    if (undefined !== d) {
+        var e = {};
+        for (var f in d.entries) {
+            e = d.entries[f];
+            var h = (e.type & 0x8000);
+            if (h) {
+                continue
+            }
+            if (this.options.showType == 2) {
+                if (e.type == 2) {
+                    b.push(e)
+                }
+            } else {
+                b.push(e)
+            }
+        }
+    }
+    return b.sort(by_path_name)
+};
+FileTreeViewer.prototype.bindFolderEvent = function () {
+    var h = this;
+    var g = $('#' + this.id);
+    g.delegate('a', 'click', function (c) {
+        var a = $(this),
+            b = a.closest('li'),
+            d = a.parent().next(".folderTree");
+        if (!a.hasClass('selected')) {
+            g.find('li.directory a.selected').removeClass('selected');
+            a.addClass('selected')
+        }
+        if (d.is('ul')) {
+            if (b.hasClass('collapsed')) {
+                b.removeClass('collapsed').addClass('expanded');
+                d.show()
+            } else if (b.hasClass('expanded')) {
+                b.removeClass('expanded').addClass('collapsed');
+                d.hide()
+            }
+        } else if (b.hasClass("directory")) {
+            var e = a.attr('data-path');
+            var f = h.getEntries(e, true);
+            h.showSubFolders(f)
+        }
+        return false
+    })
+};
+FileTreeViewer.prototype.showSubFolders = function (d) {
+    if (d.length > 0) {
+        var e = $('#' + this.id);
+        var f = e.find("li.directory a.selected").closest("li");
+        var h = f.find("ul");
+        if (h.length > 0) {
+            h.remove()
+        }
+        var g = '<ul class="folderTree">';
+        $.each(d, function (c, a) {
+            var b = (a.type == 2) ? "directory collapsed" : "";
+            g += '<li class="' + b + '"><p><a data-path="' + a.path + '" style="cursor:pointer;">' + basename(a.path) + '</a></p></li>'
+        });
+        g += '</ul>';
+        f.removeClass("collapsed").addClass("expanded").append(g)
+    }
+};
+FileTreeViewer.prototype.getTargetDir = function () {
+    return $('#' + this.id).find("li a.selected").attr("data-path")
+};
+FileTreeViewer.prototype.renderLayout = function (c) {
+    if (c === true) {
+        return folderTree_layout(this.id, this.getEntries('/home', true))
+    }
+    return folderTreeDlg_layout(this.id, this.getEntries('/home', true))
+};
+
+function select_dir_layout(c, a, b) {
+    var d = [];
+    everbox.modalBox.setTitle(stripspecialchars(a));
+    d.push("<div id=\"");
+    d.push(c);
+    d.push("\" style=\"position:relative;margin-bottom:10px;text-align:left;background-color:#F9F9F9;overflow:auto;\">\r\n    <div style=\"height:306px;\">\r\n        ");
+    d.push(b);
+    d.push("\r\n");
+    d.push("    </div>\r\n</div>\r\n<div id=\"box_buttons\">\r\n    <ul>\r\n        <li><a title=\"取消\" href=\"javascript:void(0);\" class=\"box_button_gray\" onClick=\"javascript:everbox.modalBox.close();\"><span>取消</span></a></li>\r\n        <li><a title=\"确定\" href=\"javascript:void(0);\" class=\"box_button_blue\" id=\"");
+    d.push(c + '_submit');
+    d.push("\"><span>确定</span></a></li>\r\n    </ul>\r\n</div>");
+    return d.join("")
+}
+everbox.selectDir = function (a) {
+    a.id = a.id || 'select_dir';
+    a.title = a.title || '';
+    a.showAll = a.showAll || false;
+    var b = a.showAll ? 3 : 2,
+        d = new FileTreeViewer(a.id + '_tree', {
+            'showType': b
+        }),
+        e = select_dir_layout(a.id, a.title, d.renderLayout());
+    everbox.showModal(e, 450, 340);
+    d.bindFolderEvent();
+    $('#' + a.id + '_submit').unbind('click').bind('click', function () {
+        var c = d.getTargetDir();
+        a.submit(c)
+    })
+};
+
+function link_viewer_layout(c, a) {
+    var b = [];
+    var d = c.path;
+    var e = d.lastIndexOf("/");
+    var f = (e == 0 ? d : d.slice(0, e));
+    var h = c.entries;
+    var g = h.length;
+    h.sort(by_path_name);
+    b.push("<table width=\"100%\" border=\"0\" cellpadding=\"5\" cellspacing=\"0\">\r\n");
+    for (i = 0; i < g; ++i) {
+        var j = h[i];
+        var k = j.path;
+        var m = basename(k);
+        var n = encodeURIComponent(k);
+        var e = m.lastIndexOf(".");
+        var l = e < 0 ? "" : m.slice(e + 1);
+        var o = get_size(j.fileSize, 1024);
+        var p = (j.type & 2) == 2;
+        var q = a.isEnabled(k);
+        var r = q ? ' checked="checked"' : '';
+        var s = q ? " highlight" : "";
+        b.push("    <tr class=\"filerow\" id=\"");
+        b.push(htmlspecialchars(k));
+        b.push("\">\r\n      <td width=\"30\" align=\"center\" valign=\"middle\" class=\"checkbox\" scope=\"col\"><input type=\"checkbox\"");
+        b.push(r);
+        b.push(" /></td>\r\n      <td valign=\"middle\" class=\"filename\" scope=\"col\">\r\n        <div class=\"fileline\">\r\n");
+        if (p) {
+            b.push("         <span class=\"floatBtn\">\r\n           <a class=\"previewBtn folder\" title=\"点击打开文件夹\">预览</a>\r\n         </span>\r\n         <p class=\"ext_folder\">");
+            b.push(stripspecialchars(mb_strshorten(m)));
+            b.push("</p>\r\n")
+        } else {
+            b.push("          <span class=\"floatBtn\">\r\n            <a class=\"download_button\" title=\"点击下载\">下载</a>\r\n");
+            if (ImageViewer_supportedType(j.mimeType) || AudioPlayer_supportedType(j)) {
+                b.push("              <a class=\"previewBtn\" title=\"点击预览\">预览</a>\r\n")
+            }
+            b.push("          </span>\r\n          <p class=\"ext_");
+            b.push(get_file_ext(l));
+            b.push("\" data-type=\"");
+            b.push(j.mimeType);
+            b.push("\">");
+            b.push(stripspecialchars(mb_strshorten(m)));
+            b.push("</p>\r\n")
+        }
+        b.push("        </div>\r\n       </td>\r\n      <td width=\"75\" align=\"right\" valign=\"middle\" class=\"filesize\" scope=\"col\">");
+        b.push(o);
+        b.push("</td>\r\n    </tr>\r\n")
+    }
+    b.push("</table>");
+    return b.join("")
+}
+function LinkViewer_alertErrMsg(c) {
+    var a = "";
+    switch (c) {
+        case 400:
+            a = "共享文件不存在或已经被发布者取消共享！";
+            break;
+        case 412:
+            a = "共享文件已达最大下载次数，你可以选择转存到自己的网盘！";
+            break;
+        case 298:
+            a = "转存文件(夹)失败，请检查是否有同名文件(夹)存在！";
+            break;
+        default:
+            a = "请求共享文件失败，请稍后重试！"
+    }
+    everbox.notice({
+        "msg": a,
+        "autoHide": true,
+        "msgType": "error"
+    })
+}
+function LinkViewer(g) {
+    this.id = g;
+    this.linkId = $(g).attr("data-linkid");
+    this.selection = new Selection();
+    this.changed = new Event();
+    this.onopen = new Event(true);
+    this.baseIdx = 0;
+    var j = this;
+    this.selection.changed.bind(function (c, a) {
+        for (var b = 0, d = a.length; b < d; b++) {
+            var e = a[b],
+                f = document.getElementById(e);
+            if (!f) {
+                continue
+            }
+            var h = $(f);
+            if (j.selection.isEnabled(e)) {
+                h.addClass("highlight").find("input[type=checkbox]").attr("checked", "checked")
+            } else {
+                h.removeClass("highlight").find("input[type=checkbox]").removeAttr("checked")
+            }
+        }
+        j.updateSizeBar()
+    })
+}
+LinkViewer.prototype.getLinkId = function (c) {
+    c = (undefined === c) ? "" : c;
+    cacheJS.options({
+        persistStorage: false
+    });
+    return this.linkId + '_' + c
+};
+LinkViewer.prototype.setPath = function (d) {
+    $("#back2_btn").attr("data-folder", d);
+    var e = this;
+    var f = childname(d);
+    var h = e.getLinkId(f);
+    var g = false;
+    var j = cacheJS.get(h);
+    if (undefined !== j) {
+        g = true;
+        e.update(j)
+    } else {
+        var k = {};
+        k[everbox.csrfKey] = everbox.csrfVal;
+        k.path = f;
+        $.ajax({
+            type: "POST",
+            url: "/f/status/" + e.linkId,
+            data: k,
+            dataType: "json",
+            beforeSend: function () {
+                if (!g) {
+                    everbox.notice({
+                        "msg": "加载中, 请稍候...",
+                        "autoHide": false,
+                        "msgType": "notice"
+                    })
+                }
+            },
+            success: function (c) {
+                everbox.notice();
+                var a = c.code;
+                var b = c.data;
+                if (a == 200) {
+                    e.update(b);
+                    cacheJS.set(h, b)
+                } else {
+                    LinkViewer_alertErrMsg(a)
+                }
+            }
+        })
+    }
+};
+LinkViewer.prototype.update = function (c) {
+    this.selection.clear();
+    this.path = c.path;
+    this.entries = [];
+    for (var a = 0, b = c.entries.length; a < b; a++) {
+        this.entries.push(c.entries[a])
+    }
+    var d = link_viewer_layout(this, this.selection);
+    $(this.id).html(d);
+    this.changed.trigger(this);
+    this._init()
+};
+LinkViewer.prototype._init = function () {
+    var l = this,
+        o = $(this.id);
+    var p = this._getCheckboxs();
+    p.unbind("change").bind("change", function (c) {
+        var a = $(this),
+            b = a.attr("checked");
+        var d = a.closest("tr").attr("id");
+        l.selection.enable(d, b)
+    });
+    $("#checkall").unbind("click").bind("click", function () {
+        if ($(this).attr("checked")) {
+            l.selectAll()
+        } else {
+            l.selectAll(false)
+        }
+    });
+    $(".filerow").mouseover(function () {
+        var c = $(this),
+            a = c.find(".floatBtn");
+        c.addClass("highlight");
+        c.find(".floatBtn").show()
+    }).mouseout(function () {
+        var c = $(this);
+        c.find(".floatBtn").hide();
+        if (!c.find('input[type=checkbox]').attr("checked")) {
+            c.removeClass("highlight")
+        }
+    });
+    o.unbind("mousedown").bind("mousedown", function (b) {
+        var d = $(b.target),
+            e = d.closest("tr"),
+            f = e.attr("id");
+        var h = b.which;
+        var g = false;
+        var j = l.selection;
+        if (h == 1) {
+            if (e.hasClass("filerow") && d.is("td.checkbox")) {
+                g = j.isEnabled(f);
+                j.enable(f, !g);
+                return false
+            } else if (d.is("input[type=checkbox]")) {
+                b.stopPropagation();
+                b.preventDefault();
+                return false
+            }
+        }
+        if (e.hasClass("filerow")) {
+            var k = l.indexOf(f);
+            if (b.ctrlKey) {
+                g = j.isEnabled(f);
+                j.enable(f, !g);
+                b.stopPropagation();
+                b.preventDefault()
+            } else if (b.shiftKey) {
+                var m = l.pathsOfRange(this.baseIdx, k);
+                j.enable(m, true, true);
+                b.stopPropagation();
+                b.preventDefault()
+            } else {
+                g = j.isEnabled(f);
+                if (!g) {
+                    l.select(f)
+                }
+            }
+            if (!b.shiftKey) {
+                this.baseIdx = k
+            }
+        }
+        if (h == 1 && !b.ctrlKey && !b.shiftKey) {
+            var n = {};
+            n[everbox.csrfKey] = everbox.csrfVal;
+            if (d.is("a.download_button")) {
+                n.path = childname(f);
+                $.ajax({
+                    type: "POST",
+                    url: "/f/download/" + l.linkId,
+                    data: n,
+                    dataType: "json",
+                    success: function (c) {
+                        var a = c.code;
+                        if (a == 200) {
+                            window.location.href = c.data.dataurl
+                        } else if (everbox.loginRequired() && a == 412) {
+                            everbox.modalBox.login("你需要登录后才能下载该资源！")
+                        } else {
+                            LinkViewer_alertErrMsg(a)
+                        }
+                    }
+                })
+            }
+            if (d.is("p")) {
+                if (d.hasClass("ext_folder")) {
+                    l.setPath(f)
+                } else {
+                    if (everbox.loginRequired()) {
+                        everbox.modalBox.login("你需要登录后才能预览该文件！")
+                    } else {
+                        l._preview(f)
+                    }
+                }
+            }
+            if (d.is("a.previewBtn")) {
+                if (d.hasClass("folder")) {
+                    l.setPath(f)
+                } else {
+                    if (everbox.loginRequired()) {
+                        everbox.modalBox.login("你需要登录后才能预览该文件！")
+                    } else {
+                        l._preview(f)
+                    }
+                }
+            }
+        }
+    })
+};
+LinkViewer.prototype._preview = function (c) {
+    var a = this.getEntries([c])[0];
+    if (!this.open(a)) {
+        everbox.notice({
+            "msg": "暂不支持预览该类型的文件！",
+            "autoHide": true,
+            "msgType": "notice"
+        })
+    }
+};
+LinkViewer.prototype._getCheckboxs = function () {
+    return $(this.id).find('.filerow input[type=checkbox]')
+};
+LinkViewer.prototype._getCheckedboxs = function () {
+    return $(this.id).find('.filerow input[type=checkbox]:checked')
+};
+LinkViewer.prototype.indexOf = function (c) {
+    for (var a = 0, b = this.entries.length; a < b; a++) {
+        var d = this.entries[a];
+        if (d.path == c) {
+            return Number(a)
+        }
+    }
+    return -1
+};
+LinkViewer.prototype.pathsOfRange = function (c, a) {
+    var b = this.entries.length;
+    if (c > a) {
+        var d = c;
+        c = a;
+        a = d
+    }
+    if (a >= b || c < 0) {
+        return []
+    }
+    var e = [];
+    for (; c <= a; ++c) {
+        e.push(this.entries[c].path)
+    }
+    return e
+};
+LinkViewer.prototype.getSelPaths = function () {
+    return this.selection.getItems()
+};
+LinkViewer.prototype.getSelections = function () {
+    var c = this.selection.getItems();
+    return this.getEntries(c)
+};
+LinkViewer.prototype.getEntries = function (c) {
+    var a = [];
+    for (var b = 0, d = this.entries.length; b < d; b++) {
+        var e = this.entries[b];
+        for (var f in c) {
+            if (c[f] == e.path) {
+                a.push(e);
+                break
+            }
+        }
+    }
+    return a
+};
+LinkViewer.prototype.updateSizeBar = function () {
+    var c = 0,
+        a = 0,
+        b = 0;
+    var d = this.getSelections();
+    for (var e = 0; e < d.length; e++) {
+        var f = d[e];
+        if (f.type == 2) {
+            a += 1
+        } else if (f.type == 1) {
+            b += 1
+        }
+        c += Number(f.fileSize)
+    }
+    var h = get_size(c, 1024);
+    var g = '';
+    if (a + b > 0) {
+        g = '已选择 ';
+        if (a > 0) {
+            g += a + ' 个文件夹, '
+        }
+        if (b > 0) {
+            g += b + ' 个文件, '
+        }
+        g += '共 ' + h
+    } else {
+        g = '如果不选择文件将转存整个文件夹'
+    }
+    $("#selectinfo").html(g)
+};
+LinkViewer.prototype.select = function (c) {
+    this.selection.enable(c, true, true)
+};
+LinkViewer.prototype.selectAll = function (c) {
+    var a = [];
+    for (var b = 0, d = this.entries.length; b < d; b++) {
+        var e = this.entries[b];
+        a.push(e.path)
+    }
+    this.selection.enable(a, c !== false)
+};
+LinkViewer.prototype.open = function (c) {
+    return this.onopen.trigger(this, c)
+};
+everbox.linkViewer = new LinkViewer("#filelinker");
